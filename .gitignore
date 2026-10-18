@@ -1,0 +1,13 @@
+**/*
+
+!README.md
+
+!src/
+!src/*.c
+!src/*.h
+!src/Makefile
+
+!flag*/
+!flag*/*.txt
+
+!.gitignore

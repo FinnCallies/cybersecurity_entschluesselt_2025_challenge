@@ -1,0 +1,58 @@
+    r0 = 0
+    r6 = 0xffffffffffffffff
+
+:prep
+    r1 = 8
+    r1 = r1 * r0
+    PAINT r6 r1
+
+    r1 = 1
+    r0++
+    r1 = 64
+    CMP r0 r1
+    JMP_NE prep
+
+    r6 = 0xfcffffffffffffff
+    display r2 = r6
+
+    r0 = 2
+
+:start
+    r1 = 64
+    r2 = r0 / r1
+    r3 = 8
+    r2 = r2 * r3
+    r3 = r0 % r1
+    r6 = display r2
+    r1 = 0
+    SET_BIT r1 r3
+    r1 = r1 & r6
+    r4 = 0
+    CMP r4 r1
+    JMP_EQ skip
+    r1 = 2
+    r1 = r0 * r1
+    r2 = 4096
+
+:goto
+    CMP r2 r1
+    JMP_LE skip
+    r3 = 64
+    r4 = r1 / r3
+    r5 = 8
+    r4 = r4 * r5
+    r3 = r1 % r3
+    r6 = display r4
+    UNSET_BIT r6 r3
+    display r4 = r6
+    r1 = r1 + r0
+    rE = goto
+
+:skip
+    r1 = 1
+    r0++
+    CMP r0 r2
+    JMP_NE start
+
+:end
+    HALT
